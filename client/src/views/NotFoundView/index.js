@@ -15,14 +15,14 @@ const NotFoundView = () => {
 
   const handleBack = () => {
     const { history } = this.props
-    history.goBack()
+    return history.goBack()
   }
 
   return (
     <main className={classes.root}>
       <div className={classes.center}>
         <NotFound />
-        <Button className={classes.button} onClick={this.handleBack}>
+        <Button className={classes.button} onClick={() => handleBack() }>
           Voltar
         </Button>
       </div>

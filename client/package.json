@@ -8,7 +8,7 @@
     "test": "react-scripts test && ava",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js src",
-    "lint:fix": "eslint --fix . --ext .js src",
+    "lint:fix": "eslint --fix . --ext .js src"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

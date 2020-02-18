@@ -5,7 +5,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory'
 
-import { resolvers, typeDefs, defaults } from '../graphql'
+import { resolvers, defaults } from '../graphql'
 
 import { TOKEN_KEY } from '../graphql/app/constants'
 
@@ -68,7 +68,6 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: ApolloLink.from([middlewareLink, stateLink, authLink, httpLink]),
   cache,
-  typeDefs,
   resolvers
 })
 

@@ -1,16 +1,10 @@
-import { GET_APP } from './gqls'
+import { GET_APP } from './queries'
 
 export const updateApp = async (_, { input }, { cache }) => {
   const previous = cache.readQuery({ query: GET_APP })
   const data = { app: { ...previous.app, ...input } }
   cache.writeData({ query: GET_APP, data })
   return data.app
-}
-
-export const toggleDrawer = async (_, { width }, { cache }) => {
-  const previous = cache.readQuery({ query: GET_APP })
-  const data = { app: { ...previous.app, openDrawer: { ...previous.app.openDrawer, [width]: !previous.app.openDrawer[width] } } }
-  cache.writeData({ query: GET_APP, data })
 }
 
 export const openSignout = async (_, variables, { cache }) => {

@@ -1,6 +1,7 @@
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-const styles = theme => ({
+
+const styles = makeStyles(theme=> ({
   root: {
     position: 'absolute',
     display: 'flex',
@@ -44,7 +45,8 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       maxWidth: theme.spacing(34),
     },
-  },
-})
+  }
+}))
 
-export default withStyles(styles)
+
+export default styles

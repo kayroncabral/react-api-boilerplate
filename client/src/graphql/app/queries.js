@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-import { GROCERY_ATTRIBUTES } from '../fragments'
+import { USER_ATTRIBUTES } from '../fragments'
 
 export const GET_APP = gql`
   query {
@@ -22,7 +22,7 @@ export const GET_APP = gql`
       openSignout
     }
   }
-  ${GROCERY_ATTRIBUTES}
+  ${USER_ATTRIBUTES}
 `
 
 export const UPDATE_APP = gql`

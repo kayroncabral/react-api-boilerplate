@@ -1,6 +1,5 @@
 import {
   updateApp,
-  toggleDrawer,
   openSignout,
   closeSignout,
 } from '../app/resolvers'
@@ -16,7 +15,6 @@ const Mutation = {
   openNotification,
   closeNotification,
   clearNotification,
-  toggleDrawer,
   openSignout,
   closeSignout
 }

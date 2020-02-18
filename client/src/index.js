@@ -8,8 +8,6 @@ import client from './apollo'
 
 import AppRouter from './routers/AppRouter'
 
-import './utils/moment'
-
 const App = (
   <ApolloProvider client={client}>
     <AppRouter />

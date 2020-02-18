@@ -3,14 +3,11 @@ import { Redirect } from '@reach/router'
 import { useQuery } from '@apollo/react-hooks'
 
 import Loading from '../components/Loading'
-import Error from '../components/Error'
 
-import { GET_APP } from '../graphql/app/gqls'
+import { GET_APP } from '../graphql/app/queries'
 
 import {
-  Paths,
-  Roles
-  /* PagSeguroSubscriptionStatus */
+  Paths
 } from '../utils/enums'
 
 const PrivateRoute = ({
@@ -20,7 +17,7 @@ const PrivateRoute = ({
   const { loading, error, data: { app: { logged, grocery } } } = useQuery(GET_APP)
 
   if (loading) return <Loading message='Carregando'/>
-  if (error) return <Error message='Ops... Alguma coisa deu errado'/>
+  if (error) return <div>Ops... Alguma coisa deu errado</div>
 
   if (!logged) return <Redirect to={Paths.home.path} />
 
@@ -28,20 +25,7 @@ const PrivateRoute = ({
   // const isPlanActive = grocery.subscription && grocery.subscription.status === PagSeguroSubscriptionStatus.active
   let hasPermission = false
 
-  if (grocery) {
-    hasPermission = (grocery.role === Roles.admin.type ||
-    grocery.role === Roles.employer.type ||
-    (grocery.role === Roles.employee.type && grocery.employer))
-
-    if (!hasPermission) {
-      if (grocery.role === Roles.employee.type && !grocery.employer) {
-        return <Redirect to={Paths.wait_for_employer.path} />
-      } else {
-        if (grocery.role === Roles.employer.type) return <Redirect to={Paths.reports.path} />
-        if (grocery.role === Roles.employee.type) return <Redirect to={Paths.orders.path} />
-      }
-    }
-  }
+  if (grocery) { }
 
   return (
     hasPermission && <Component {...props}/>
