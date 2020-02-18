@@ -1,0 +1,42 @@
+---
+######## API ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-staging
+  labels:
+    env: staging
+spec:
+  selector:
+    app: api-staging
+  type: NodePort #LoadBalancer
+  ports:
+  - port: 80
+---
+######## CLIENT ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-staging
+  labels:
+    env: staging
+spec:
+  selector:
+    app: client-staging
+  type: NodePort #LoadBalancer
+  ports:
+  - port: 80
+---
+######## ELASTICSEARCH ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-staging
+  labels:
+    env: staging
+spec:
+  selector:
+    app: elasticsearch-staging
+  ports:
+  - port: 9200
+---

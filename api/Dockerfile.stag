@@ -1,0 +1,9 @@
+ARG NODE_IMAGE_TAG=10.15.3
+
+FROM node:$NODE_IMAGE_TAG
+WORKDIR /usr/src/app
+COPY package.json package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 80
+CMD ["yarn", "start"]

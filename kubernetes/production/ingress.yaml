@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  tls:
+  - hosts:
+    - www.somosmee.com
+    secretName: mee-tls-www
+  - hosts:
+    - www.graphql.somosmee.com
+    secretName: mee-tls-www.graphql
+  rules:
+  - host: www.somosmee.com
+    http:
+      paths:
+      - backend:
+          serviceName: client
+          servicePort: 80
+  - host: www.graphql.somosmee.com
+    http:
+      paths:
+      - backend:
+          serviceName: api
+          servicePort: 80

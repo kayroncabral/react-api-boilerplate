@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-staging
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  tls:
+  - hosts:
+    - www.staging.somosmee.com
+    secretName: mee-tls-www.staging
+  - hosts:
+    - www.staging-graphql.somosmee.com
+    secretName: mee-tls-www.staging-graphql
+  rules:
+  - host: www.staging.somosmee.com
+    http:
+      paths:
+      - backend:
+          serviceName: client-staging
+          servicePort: 80
+  - host: www.staging-graphql.somosmee.com
+    http:
+      paths:
+      - backend:
+          serviceName: api-staging
+          servicePort: 80

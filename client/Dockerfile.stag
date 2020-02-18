@@ -1,0 +1,20 @@
+ARG NODE_IMAGE_TAG=10.15.3
+ARG NGINX_IMAGE_TAG=1.16.0
+
+FROM node:$NODE_IMAGE_TAG as builder
+WORKDIR /usr/src/app
+COPY package.json package*.json ./
+RUN yarn
+COPY . .
+ENV SKIP_PREFLIGHT_CHECK true
+ENV REACT_APP_API https://www.staging-graphql.somosmee.com/graphql
+ENV REACT_APP_GOOGLE_CLIENT_ID 549713737769-7q9hdjq9mou4fiuqsfu0ub1rikd5dkdd.apps.googleusercontent.com
+ENV REACT_APP_SENTRY_DSN https://bb23e20f62664ca29c80c61aa31d2033@sentry.io/1189898
+ENV REACT_APP_PAGSEGURO_MONTHLY_PLAN 79C2D9FA30308E9554862F9451DC9752
+ENV REACT_APP_PAGSEGURO_YEARLY_PLAN BC0DCF1AF5F5F61DD4388FBB3C4E4624
+RUN yarn build
+
+FROM nginx:$NGINX_IMAGE_TAG
+COPY ./nginx/nginx.conf ./etc/nginx/nginx.conf
+COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+EXPOSE 80

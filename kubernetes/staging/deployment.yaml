@@ -1,0 +1,161 @@
+---
+######## API ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api-staging
+  namespace: default
+  labels:
+    env: staging
+    app: api-staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-staging
+  template:
+    metadata:
+      labels:
+        env: staging
+        app: api-staging
+    spec:
+      containers:
+      - name: api-staging
+        image: gcr.io/mee-261822/api:latest
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: NODE_ENV
+              name: api-staging-config
+        - name: MONGODB_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MONGODB_HOST
+              name: api-staging-config
+        - name: MONGODB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MONGODB_DATABASE
+              name: api-staging-config
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              key: JWT_SECRET
+              name: api-staging-config
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              key: PORT
+              name: api-staging-config
+        - name: GOOGLE_API
+          valueFrom:
+            configMapKeyRef:
+              key: GOOGLE_API
+              name: api-staging-config
+        - name: GOOGLE_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: GOOGLE_CLIENT_ID
+              name: api-staging-config
+        - name: SENTRY_DSN
+          valueFrom:
+            configMapKeyRef:
+              key: SENTRY_DSN
+              name: api-staging-config
+        - name: ELASTICSEARCH_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: ELASTICSEARCH_HOST
+              name: api-staging-config
+        - name: ELASTICSEARCH_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: ELASTICSEARCH_PORT
+              name: api-staging-config
+        - name: PAGSEGURO_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_TOKEN
+              name: api-staging-config
+        - name: PAGSEGURO_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_EMAIL
+              name: api-staging-config
+        - name: PAGSEGURO_API
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_API
+              name: api-staging-config
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+---
+######## CLIENT ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client-staging
+  namespace: default
+  labels:
+    env: staging
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-staging
+  template:
+    metadata:
+      labels:
+        env: staging
+        app: client-staging
+    spec:
+      containers:
+      - name: client-staging
+        image: gcr.io/mee-261822/client:latest
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: NODE_ENV
+              name: client-staging-config
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+---
+######## ELASTICSEARCH ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elasticsearch-staging
+  namespace: default
+  labels:
+    env: staging
+    app: elasticsearch-staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch-staging
+  template:
+    metadata:
+      labels:
+        env: staging
+        app: elasticsearch-staging
+    spec:
+      containers:
+      - name: elasticsearch-staging
+        image: gcr.io/mee-261822/elasticsearch:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 256Mi
+---

@@ -1,0 +1,37 @@
+---
+######## API ########
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-staging-config
+  namespace: default
+  labels:
+    env: staging
+    app: api-staging
+data:
+  NODE_ENV: staging
+  MONGODB_HOST: mongodb+srv://mee-web:HM2C4fLtSwvKLD3x@staging-cluster-oty65.gcp.mongodb.net/mee?retryWrites=true&w=majority
+  MONGODB_DATABASE: mee
+  JWT_SECRET: 1alFv26vIkuTPJDeNhOMHtFnRKEv6YI
+  PORT: "80"
+  GOOGLE_API: https://www.googleapis.com
+  GOOGLE_CLIENT_ID: 549713737769-7q9hdjq9mou4fiuqsfu0ub1rikd5dkdd.apps.googleusercontent.com
+  SENTRY_DSN: https://3b38f2fefd314023b7736659101f6866@sentry.io/1421071
+  ELASTICSEARCH_HOST: elasticsearch-staging
+  ELASTICSEARCH_PORT: "9200"
+  PAGSEGURO_TOKEN: A37B3D8F902B41EBBD00D689217AE401
+  PAGSEGURO_EMAIL: guilherme.kodama@somosmee.com
+  PAGSEGURO_API: https://ws.sandbox.pagseguro.uol.com.br
+---
+######## CLIENT ########
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-staging-config
+  namespace: default
+  labels:
+    env: staging
+    app: client-staging
+data:
+  NODE_ENV: staging
+---

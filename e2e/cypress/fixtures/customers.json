@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "5c0522f62208bf00131f3211",
+    "email": "primeiro@email.com",
+    "cpf": "11111111111",
+    "firstName": "Primeiro",
+    "lastName": "Sobrenome",
+    "birthday": "1989-01-04",
+    "mobile": "92911111111",
+    "createdAt": 1543840502609,
+    "updatedAt": 1543840502609
+  },
+  {
+    "_id": "5c0522f62208bf00131f32187",
+    "email": "segundo@email.com",
+    "cpf": "22222222222",
+    "firstName": "Segundo",
+    "lastName": "Sobrenome",
+    "birthday": "1977-05-28",
+    "mobile": "92922222222",
+    "createdAt": 1543840502609,
+    "updatedAt": 1543840502609
+  }
+]

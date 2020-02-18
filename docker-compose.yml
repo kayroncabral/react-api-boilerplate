@@ -1,0 +1,101 @@
+version: '3.7'
+services:
+  mongo1:
+    image: mongo:4.0.8
+    container_name: mongo1
+    restart: always
+    ports:
+      - 27017:27017
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    volumes:
+      - mongo:/var/lib/mongo
+  mongo2:
+    image: mongo:4.0.8
+    container_name: mongo2
+    restart: always
+    ports:
+      - 27018:27017
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    volumes:
+      - mongo:/var/lib/mongo
+  mongo3:
+    image: mongo:4.0.8
+    container_name: mongo3
+    restart: always
+    ports:
+      - 27019:27017
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    volumes:
+      - mongo:/var/lib/mongo
+  mongo_test:
+    image: mongo:4.0.8
+    container_name: mongo_test
+    restart: always
+    ports:
+      - 27020:27017
+    volumes:
+      - mongo:/var/lib/mongo
+  client:
+    image: client
+    container_name: client
+    build: ./client
+    volumes:
+      - /usr/src/app/node_modules
+      - ./client:/usr/src/app
+    env_file:
+      - ./client/env.development
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+  api:
+    image: api
+    container_name: api
+    build: ./api
+    volumes:
+      - /usr/src/app/node_modules
+      - ./api:/usr/src/app
+    env_file:
+      - ./api/development.env
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongo1
+      - elasticsearch
+  # storybook:
+  #   image: storybook
+  #   container_name: storybook
+  #   build: ./client
+  #   volumes:
+  #     - ./client:/usr/src/app
+  #   ports:
+  #     - 9009:9009
+  #   command: ["npm", "run", "storybook"]
+  #e2e:
+    #image: e2e
+    #container_name: e2e
+    #build: ./e2e
+    #depends_on:
+      #- client
+    # note: inside e2e container, the network allows accessing
+    # "web" host under name "web"
+    # so "curl http://web" would return whatever the webserver
+    # in the "web" container is cooking
+    # see https://docs.docker.com/compose/networking/
+    #environment:
+      #- CYPRESS_baseUrl=http://client:3000
+    # command: ["npx", "cypress", "run"]
+    # mount the host directory e2e/cypress and the file e2e/cypress.json as
+    # volumes within the container
+    # this means that:
+    #  1. anything that Cypress writes to these folders (e.g., screenshots,
+    #     videos) appears also on the Docker host's filesystem
+    #  2. any change that the developer applies to Cypress files on the host
+    #     machine immediately takes effect within the e2e container (no docker
+    #     rebuild required).
+    #volumes:
+      #- /usr/src/app/node_modules
+      #- ./e2e/cypress:/usr/src/app/cypress
+      #- ./e2e/cypress.json:/usr/src/app/cypress.json
+volumes:
+  mongo:

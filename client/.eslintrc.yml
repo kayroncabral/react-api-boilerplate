@@ -1,0 +1,39 @@
+env:
+  browser: true
+  es6: true
+  node: true
+extends:
+  - standard
+  - plugin:react/recommended
+  - plugin:cypress/recommended
+  - plugin:jest/recommended
+  - plugin:jsx-a11y/recommended
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parser: babel-eslint
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2018
+  sourceType: module
+plugins:
+  - react
+  - react-hooks
+  - cypress
+  - jest
+  - jsx-a11y
+  - prettier
+rules:
+  indent: ['error', 2, { 'SwitchCase': 1 }]
+  semi: ['error', 'never']
+  quotes: ['error', 'single']
+  jsx-quotes: ['error', 'prefer-single']
+  no-underscore-dangle: ['off']
+  import/prefer-default-export: ['off']
+  import/named: ['off']
+  import/no-named-as-default: ['off']
+  import/no-named-as-default-member: ['off']
+  react/jsx-filename-extension: ['error', { 'extensions': ['.js', '.jsx'] }]
+  react/prop-types: ['warn']
+  space-before-function-paren: ['error', 'always']

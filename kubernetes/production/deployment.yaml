@@ -1,0 +1,161 @@
+---
+######## API ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api
+  namespace: default
+  labels:
+    env: production
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        env: production
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: gcr.io/mee-261822/api:latest
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: NODE_ENV
+              name: api-config
+        - name: MONGODB_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MONGODB_HOST
+              name: api-config
+        - name: MONGODB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MONGODB_DATABASE
+              name: api-config
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              key: JWT_SECRET
+              name: api-config
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              key: PORT
+              name: api-config
+        - name: GOOGLE_API
+          valueFrom:
+            configMapKeyRef:
+              key: GOOGLE_API
+              name: api-config
+        - name: GOOGLE_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: GOOGLE_CLIENT_ID
+              name: api-config
+        - name: SENTRY_DSN
+          valueFrom:
+            configMapKeyRef:
+              key: SENTRY_DSN
+              name: api-config
+        - name: ELASTICSEARCH_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: ELASTICSEARCH_HOST
+              name: api-config
+        - name: ELASTICSEARCH_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: ELASTICSEARCH_PORT
+              name: api-config
+        - name: PAGSEGURO_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_TOKEN
+              name: api-config
+        - name: PAGSEGURO_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_EMAIL
+              name: api-config
+        - name: PAGSEGURO_API
+          valueFrom:
+            configMapKeyRef:
+              key: PAGSEGURO_API
+              name: api-config
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+---
+######## CLIENT ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client
+  namespace: default
+  labels:
+    env: production
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        env: production
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: gcr.io/mee-261822/client:latest
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: NODE_ENV
+              name: client-config
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+---
+######## ELASTICSEARCH ########
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  namespace: default
+  labels:
+    env: production
+    app: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        env: production
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: gcr.io/mee-261822/elasticsearch:latest
+        resources:
+          requests:
+            cpu: 10m
+            memory: 256Mi
+---

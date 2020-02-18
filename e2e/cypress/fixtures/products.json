@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "5a25f528702ded00142d276f",
+    "ean": "7896013100386",
+    "name": "ÁGUA SANITÁRIA BRILUX 1L",
+    "description": "CLORO ATIVO. MULTIPLO USO. ALVEJA E DESINFETA",
+    "price": 2.9,
+    "measurementType": "unit",
+    "createdAt": 1512437032000,
+    "updatedAt": 1512437032000
+  },
+  {
+    "_id": "5a25f528702ded00142d2775",
+    "ean": "7898910758127",
+    "name": "AMACIANTE DE ROUPAS BRINORT NOVO AMANHECER 2L",
+    "description": "",
+    "price": 5.5,
+    "measurementType": "unit",
+    "createdAt": 1512437032000,
+    "updatedAt": 1551534597593
+  }
+]

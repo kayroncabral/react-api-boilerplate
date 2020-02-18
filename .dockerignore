@@ -1,0 +1,8 @@
+# Git
+.git
+.gitignore
+
+npm-debug.log*
+
+# Docker
+docker-compose.*.yml

@@ -1,0 +1,42 @@
+---
+######## API ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  labels:
+    env: production
+spec:
+  selector:
+    app: api
+  type: NodePort #LoadBalancer
+  ports:
+  - port: 80
+---
+######## CLIENT ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  labels:
+    env: production
+spec:
+  selector:
+    app: client
+  type: NodePort #LoadBalancer
+  ports:
+  - port: 80
+---
+######## ELASTICSEARCH ########
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  labels:
+    env: production
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+  - port: 9200
+---

@@ -1,0 +1,37 @@
+---
+######## API ########
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: default
+  labels:
+    env: production
+    app: api
+data:
+  NODE_ENV: production
+  MONGODB_HOST: mongodb+srv://mee-web:HM2C4fLtSwvKLD3x@production-cluster-oty65.gcp.mongodb.net/mee?retryWrites=true&w=majority
+  MONGODB_DATABASE: mee
+  JWT_SECRET: QiLETdOEtDFKhSJ3YSWpYBuv7Nw1qAM
+  PORT: "80"
+  GOOGLE_API: https://www.googleapis.com
+  GOOGLE_CLIENT_ID: 549713737769-v1eq69ptb6m7iu3mcvdh38kdvq0rbpq2.apps.googleusercontent.com
+  SENTRY_DSN: https://3b38f2fefd314023b7736659101f6866@sentry.io/1421071
+  ELASTICSEARCH_HOST: elasticsearch
+  ELASTICSEARCH_PORT: "9200"
+  PAGSEGURO_TOKEN: 1fbf4cf8-5219-4f72-84af-23facc477066cdab0e4b417aa7da7f939cda3394891775ba-3d39-4978-842b-16a07beed276
+  PAGSEGURO_EMAIL: guilherme.kodama@somosmee.com
+  PAGSEGURO_API: https://ws.pagseguro.uol.com.br
+---
+######## CLIENT ########
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-config
+  namespace: default
+  labels:
+    env: production
+    app: client
+data:
+  NODE_ENV: production
+---

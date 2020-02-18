@@ -1,0 +1,50 @@
+type Mutation {
+  updateApp(input: UpdateAppInput!): App!
+  openNotification(input: NotificationInput! ): Notification!
+  closeNotification: Notification!
+  clearNotification: Notification!
+  openDrawer(width: String!): App!
+  closeDrawer(width: String!): App!
+  openSignout: App!
+  closeSignout: App!
+}
+
+input UpdateAppInput {
+  logged: Boolean
+  openProductDialog: Boolean
+  openRefreshSnackbar: Boolean
+}
+
+input NotificationInput {
+  variant: String!
+  message: String!
+}
+
+type App {
+  logged: Boolean!
+  drawer: OpenDrawer!
+  openProductDialog: Boolean!
+  openRefreshSnackbar: Boolean!
+  openSignout: Boolean!
+  openSettings: Boolean!
+}
+
+type Notification {
+  open: Boolean!
+  variant: String!
+  message: String!
+}
+
+type OpenDrawer {
+  xs: Boolean!
+  sm: Boolean!
+  md: Boolean!
+  lg: Boolean!
+  xl: Boolean!
+}
+
+type Snackbar {
+  open: Boolean!
+  variant: String
+  message: String
+}

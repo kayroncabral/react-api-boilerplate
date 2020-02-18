@@ -1,0 +1,11 @@
+{
+  "_id": "5c0522f62208bf00131f3211",
+  "email": "primeiro@email.com",
+  "cpf": "11111111111",
+  "firstName": "Primeiro",
+  "lastName": "Sobrenome",
+  "birthday": "1989-01-04",
+  "mobile": "92911111111",
+  "createdAt": 1543840502609,
+  "updatedAt": 1543840502609
+}
