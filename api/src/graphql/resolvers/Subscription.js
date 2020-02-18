@@ -1,9 +1,3 @@
-import {
-  orderClosed
-} from '../order/resolvers'
-
-const Subscription = {
-  orderClosed
-}
+const Subscription = {}
 
 export { Subscription as default }

@@ -1,6 +1,3 @@
 require('@babel/polyfill')
 require('@babel/register')
-require('./sentry')
-require('./utils/prototypes')
-require('./cronjobs')
 require('./server')

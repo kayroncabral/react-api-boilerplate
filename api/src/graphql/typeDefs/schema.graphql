@@ -6,11 +6,11 @@ type Query {
 }
 
 type Mutation {
-  createGrocery(input: CreateUserInput!): CreateGroceryPayload!
+  createUser(input: CreateUserInput!): CreateUserPayload!
   updateMe(input: UpdateUserInput!): User!
 }
 
-type CreateGroceryPayload {
+type CreateUserPayload {
   token: String!
   user: User!
 }
