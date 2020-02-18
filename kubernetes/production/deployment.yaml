@@ -48,46 +48,6 @@ spec:
             configMapKeyRef:
               key: PORT
               name: api-config
-        - name: GOOGLE_API
-          valueFrom:
-            configMapKeyRef:
-              key: GOOGLE_API
-              name: api-config
-        - name: GOOGLE_CLIENT_ID
-          valueFrom:
-            configMapKeyRef:
-              key: GOOGLE_CLIENT_ID
-              name: api-config
-        - name: SENTRY_DSN
-          valueFrom:
-            configMapKeyRef:
-              key: SENTRY_DSN
-              name: api-config
-        - name: ELASTICSEARCH_HOST
-          valueFrom:
-            configMapKeyRef:
-              key: ELASTICSEARCH_HOST
-              name: api-config
-        - name: ELASTICSEARCH_PORT
-          valueFrom:
-            configMapKeyRef:
-              key: ELASTICSEARCH_PORT
-              name: api-config
-        - name: PAGSEGURO_TOKEN
-          valueFrom:
-            configMapKeyRef:
-              key: PAGSEGURO_TOKEN
-              name: api-config
-        - name: PAGSEGURO_EMAIL
-          valueFrom:
-            configMapKeyRef:
-              key: PAGSEGURO_EMAIL
-              name: api-config
-        - name: PAGSEGURO_API
-          valueFrom:
-            configMapKeyRef:
-              key: PAGSEGURO_API
-              name: api-config
         resources:
           requests:
             cpu: 10m
