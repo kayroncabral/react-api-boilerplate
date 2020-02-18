@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mongo1:
-    image: mongo:4.0.8
+    image: mongo:4.2.3
     container_name: mongo1
     restart: always
     ports:
@@ -10,7 +10,7 @@ services:
     volumes:
       - mongo:/var/lib/mongo
   mongo2:
-    image: mongo:4.0.8
+    image: mongo:4.2.3
     container_name: mongo2
     restart: always
     ports:
@@ -19,7 +19,7 @@ services:
     volumes:
       - mongo:/var/lib/mongo
   mongo3:
-    image: mongo:4.0.8
+    image: mongo:4.2.3
     container_name: mongo3
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
     volumes:
       - mongo:/var/lib/mongo
   mongo_test:
-    image: mongo:4.0.8
+    image: mongo:4.2.3
     container_name: mongo_test
     restart: always
     ports:
@@ -61,16 +61,6 @@ services:
       - 4000:4000
     depends_on:
       - mongo1
-      - elasticsearch
-  # storybook:
-  #   image: storybook
-  #   container_name: storybook
-  #   build: ./client
-  #   volumes:
-  #     - ./client:/usr/src/app
-  #   ports:
-  #     - 9009:9009
-  #   command: ["npm", "run", "storybook"]
   #e2e:
     #image: e2e
     #container_name: e2e
