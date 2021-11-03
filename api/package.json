@@ -21,7 +21,7 @@
     "graphql": "^14.5.8",
     "jsonwebtoken": "8.5.1",
     "mongoose": "^5.7.14",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "apollo-server-integration-testing": "^2.3.0",
